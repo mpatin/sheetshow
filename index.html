@@ -21,7 +21,7 @@
         }
         .toolbar {
             flex: 0 0 auto;
-            padding: 8px;
+            padding: 4px 8px;
             background: #f0f7ff;
             border-bottom: 3px solid #333;
             position: sticky;
@@ -44,10 +44,11 @@
 
         /* Input elements */
         input {
-            padding: 6px 10px;
+            padding: 4px 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-family: monospace;
+            font-size: 13px;
         }
         button {
             padding: 6px 12px;
@@ -81,35 +82,35 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 4px;
         }
         .sheet-input-row {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             align-items: center;
         }
         .sheet-input-group {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             align-items: center;
         }
         .gid-group {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             align-items: center;
         }
 
         /* Buttons */
         .icon-button {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 1px solid currentColor;
             border-radius: 4px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 300;
             line-height: 0;
             background: transparent;
@@ -119,8 +120,8 @@
             background: transparent;
             padding: 0;
             color: #0066ff;
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -131,8 +132,8 @@
             background: #f0f0f0;
         }
         .view-sheet svg {
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
         }
         .add-sheet {
             color: #4CAF50;
@@ -145,7 +146,7 @@
         }
         .button-group {
             display: flex;
-            gap: 8px;
+            gap: 4px;
         }
         .sheet-input-row .button-group .add-sheet {
             display: none;
@@ -184,18 +185,23 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
             z-index: 1000;
+            padding: 0;
+            overflow-y: auto;
         }
         .modal-content {
             position: relative;
             background: white;
-            margin: 50vh auto 0;
-            transform: translateY(-50%);
+            margin: 20px auto;
             padding: 20px;
-            width: 80%;
+            width: 90%;
             max-width: 600px;
+            max-height: calc(100vh - 40px);
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             line-height: 1.5;
+            overflow-y: auto;
+            transform: none;
+            font-size: 14px;
         }
         .close {
             position: absolute;
@@ -205,36 +211,35 @@
             cursor: pointer;
             color: #666;
         }
+        .modal-content h2 {
+            font-size: 20px;
+            margin: 0 0 12px;
+        }
         .modal-content h3 {
-            margin: 24px 0 12px;
+            font-size: 16px;
+            margin: 20px 0 8px;
             color: #0066ff;
         }
         .modal-content h3:first-child {
             margin-top: 0;
         }
-        .modal-content ul, .modal-content ol {
+        .modal-content p {
             margin: 8px 0;
-            padding-left: 24px;
+        }
+        .modal-content ul, .modal-content ol {
+            margin: 6px 0;
+            padding-left: 20px;
         }
         .modal-content li {
-            margin: 6px 0;
+            margin: 4px 0;
         }
         .modal-content code {
-            display: block;
-            padding: 12px;
-            margin: 8px 0;
-            background: #f5f5f5;
-            border-radius: 4px;
-            font-family: monospace;
-            word-break: break-all;
-        }
-        .modal-content ul code {
-            display: inline;
-            padding: 2px 6px;
-            margin: 0;
+            font-size: 13px;
+            padding: 8px;
+            margin: 6px 0;
         }
         .sheet-id-input {
-            width: 360px;
+            width: 320px;
             flex: 0 0 auto;
         }
         .frame-number {
@@ -272,6 +277,51 @@
 
         .help-icon:hover {
             background: #f0f0f0;
+        }
+
+        /* Update input and toolbar styles */
+        .toolbar {
+            padding: 4px 8px;  /* Reduced vertical padding */
+        }
+
+        .sheet-form {
+            gap: 4px;  /* Reduced gap between rows */
+        }
+
+        .sheet-input-row {
+            gap: 4px;  /* Reduced gap between elements */
+        }
+
+        .sheet-input-group {
+            gap: 4px;
+        }
+
+        .gid-group {
+            gap: 4px;
+        }
+
+        .sheet-id-input {
+            width: 320px;  /* Slightly narrower */
+        }
+
+        .gid-input {
+            width: 80px;  /* Fixed width for GID input */
+        }
+
+        .button-group {
+            gap: 4px;  /* Reduced gap between buttons */
+        }
+
+        /* Make icon buttons slightly smaller */
+        .icon-button, .view-sheet {
+            width: 22px;
+            height: 22px;
+            font-size: 16px;
+        }
+
+        .view-sheet svg {
+            width: 12px;
+            height: 12px;
         }
     </style>
 </head>
@@ -461,8 +511,8 @@
             inputsContainer.innerHTML = '';
             
             // Default values for empty state
-            const defaultSheetId = '14FmABc38c-rMc5s-1IQRHAooZECSCI4zijM4vOVnmc8';
-            const defaultGids = ['0', '475328217', '875068390'];
+            const defaultSheetId = '1OOEOd10jWyRUZNUScUTR2IZg-KOJoS2RMh8eMw5Ftyo';
+            const defaultGids = ['516452944', '225007185', '234786890'];
             
             // Use frames parameter if provided, otherwise default to 3
             const numFrames = framesParam ? 
